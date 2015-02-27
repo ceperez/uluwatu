@@ -79,8 +79,9 @@ angular.module('uluwatuControllers').controller('clusterController', ['$scope', 
           }
           var actualBp = $filter('filter')($rootScope.blueprints, { id: $scope.cluster.blueprintId});
           var hostgroups = [];
+          hostgroups.push({templateId: tmpTemplateId, group: "ambari_server", nodeCount: 1, type: "AMBARI_SERVER"});
           actualBp[0].ambariBlueprint.host_groups.forEach(function(k){
-            hostgroups.push({templateId: tmpTemplateId, group: k.name, nodeCount: 1});
+            hostgroups.push({templateId: tmpTemplateId, group: k.name, nodeCount: 1, type: "HOSTGROUP"});
           });
           $scope.cluster.instanceGroups = hostgroups;
         }
